@@ -1,0 +1,12 @@
+.list
+{
+    height: 200px;
+    width: 20%;
+    overflow: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+}
+
+.listItem
+{
+}
