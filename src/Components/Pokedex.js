@@ -3,10 +3,12 @@ import axios from'axios';
 import styles from './Pokedex.module.css';
 import Pokemon from './Pokemon.js';
 
-function Pokedex(){
+function Pokedex(props){
     const [items, setItems] = useState([]);
     const pokemonList = [];
-    let pokemon = '';
+    const [pokemonName, setPokemonName] = useState();
+    const search = props.search;
+    const [pokemon, setPokemon] = useState(0);
 
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=1000")
@@ -14,26 +16,28 @@ function Pokedex(){
                 setItems(res.data.results);
             })
     }, [])
-    
-    const ShowPokemon = (name) => {
-        pokemon = name;
-        console.log(pokemon);
-    }
 
+    useEffect(() => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+            .then(res => {
+                setPokemon(res.data);
+            })
+    }, [pokemonName])
 
     if(items.length > 0)
     {
         for(let i = 0; i < items.length; i++)
         {
-            pokemonList.push(items[i].name);
+            if(items[i].name.includes(search) || search === undefined)
+                pokemonList.push(items[i].name);
         }
 
         return(
             <div>
                 <ul className = {styles.list}>
                     {
-                        pokemonList.map(name => <li className = {styles.listItem}>
-                                                    <button onClick= {ShowPokemon.bind(name)}>{name}</button>
+                        pokemonList.map(name => <li key = {name} className = {styles.listItem}>
+                                                    <button className = {styles.itemButton} onClick= {() => setPokemonName(name)}>{name}</button>
                                                 </li>)
                     }
                 </ul>
@@ -41,13 +45,12 @@ function Pokedex(){
             </div>
         );
     }
-
-    return(
-        <div>
-
-        </div>
-    ); 
-
+    else 
+    {
+        return(
+            <div/>
+        ); 
+    }
 }
 
 export default Pokedex;

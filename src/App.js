@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Pokedex from './Components/Pokedex.js';
 
 function App() {
+  const [search, setSearch] = useState();
+
 
   return (
     <div className="App">
-      Name/ID: <input type = 'text'></input>
-      <Pokedex></Pokedex>
+      Name: <input type = 'text' value = {search} onChange = {e => setSearch(e.target.value)}></input>
+      <Pokedex search = {search}></Pokedex>
     </div>
   );
 }
