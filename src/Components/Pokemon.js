@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import styles from '../Stylesheets/Pokemon.module.css';
 
 const Pokemon = (props) =>{
     
     const pokemon = props.pokemon;
     const pokemonName = pokemon.name;
-    const [types, setTypes] = useState([]);
+    const capitalize = props.capitalize;
 
     const iDToText = (num) => {
         if(num/10 < 1)
@@ -24,36 +24,38 @@ const Pokemon = (props) =>{
         {
             return `0${num}`;
         }
-        else    return num;
+        else return num;
     }
 
     const showTypes = (pokemon) => {
         if(pokemon.types.length === 2)
         {
-            return `${pokemon.types[1].type.name} ${pokemon.types[0].type.name}`;
+            return `${capitalize(pokemon.types[1].type.name)} 
+                    ${capitalize(pokemon.types[0].type.name)}`;
         }
         else
         {
-            return pokemon.types[0].type.name;
+            return capitalize(pokemon.types[0].type.name);
         }
     }
     
     if(pokemon)
     {
         return(
-            <div>
-                {`ID #${iDToText(pokemon.id)}: ${pokemonName}`}
+            <div className = {styles.pokemonInfo}>
+                <img className = {styles.pokemonImg} src = {pokemon.sprites.front_default} alt = {`${pokemonName} does not have any available sprite`} />
+                {`ID #${iDToText(pokemon.id)}: ${capitalize(pokemon.types[0].type.name)}`}
                 <br />
-                    <span>{showTypes(pokemon)}</span>
+                    <span>Type(s): {showTypes(pokemon)}</span>
                 <br />
-                <img src = {pokemon.sprites.front_default} alt = {`${pokemonName} does not have any available sprite`} />
+                
             </div>
         );
     }
     else
     {
         return(
-            <div>
+            <div className = {styles.pokemonInfo}>
                 ID #00000
             </div>
         )

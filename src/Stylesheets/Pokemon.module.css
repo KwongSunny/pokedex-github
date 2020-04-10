@@ -1,0 +1,11 @@
+.pokemonImg{
+    position: absolute;
+    top:-270px;
+    left:80px;
+}
+
+.pokemonInfo{
+    position: absolute;
+    text-align: left;
+    width:550px;
+}
