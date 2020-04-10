@@ -44,7 +44,7 @@ const Pokemon = (props) =>{
         return(
             <div className = {styles.pokemonInfo}>
                 <img className = {styles.pokemonImg} src = {pokemon.sprites.front_default} alt = {`${pokemonName} does not have any available sprite`} />
-                {`ID #${iDToText(pokemon.id)}: ${capitalize(pokemon.types[0].type.name)}`}
+                {`ID #${iDToText(pokemon.id)}: ${capitalize(pokemonName)}`}
                 <br />
                     <span>Type(s): {showTypes(pokemon)}</span>
                 <br />
