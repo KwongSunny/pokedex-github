@@ -43,12 +43,22 @@ const Pokemon = (props) =>{
     {
         return(
             <div className = {styles.pokemonInfo}>
+                <br />
                 <img className = {styles.pokemonImg} src = {pokemon.sprites.front_default} alt = {`${pokemonName} does not have any available sprite`} />
                 {`ID #${iDToText(pokemon.id)}: ${capitalize(pokemonName)}`}
                 <br />
                     <span>Type(s): {showTypes(pokemon)}</span>
                 <br />
-                
+                <br />
+                <div className = {styles.pokemonStats}>
+                    <div>Speed: {pokemon.stats[0].base_stat}</div>
+                    <div>Special Defense: {pokemon.stats[1].base_stat}</div>
+                    <div>Special Attack: {pokemon.stats[2].base_stat}</div>
+                    <div>Defense: {pokemon.stats[3].base_stat}</div>
+                    <div>Attack: {pokemon.stats[4].base_stat}</div>
+                    <div>HP: {pokemon.stats[0].base_stat}</div>
+                </div>
+
             </div>
         );
     }
@@ -56,6 +66,7 @@ const Pokemon = (props) =>{
     {
         return(
             <div className = {styles.pokemonInfo}>
+                <br />
                 ID #00000
             </div>
         )

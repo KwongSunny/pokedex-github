@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className= {styles.App}>
-      <input className = {styles.input} type = 'text' value = {search} onChange = {e => setSearch(e.target.value)}></input>
+      <input className = {styles.input} type = 'text' onChange = {e => {setSearch(e.target.value.toLowerCase())}}></input>
       <Pokedex capitalize = {capitalize} search = {search}></Pokedex>
     </div>
   );

@@ -11,3 +11,8 @@
     text-align: left;
     width:550px;
 }
+
+.pokemonStats{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
