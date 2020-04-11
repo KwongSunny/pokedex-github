@@ -20,13 +20,17 @@ function Pokedex(props){
     }, [])
 
     useEffect(() => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-            .then(res => {
-                setPokemon(res.data);
-            })
+        if(pokemonName !== undefined)
+        {
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(res => {
+                    setPokemon(res.data);
+                })
+        }
+
     }, [pokemonName])
 
-    if(items.length > 0)
+    if(items !== [])
     {
         for(let i = 0; i < items.length; i++)
         {
